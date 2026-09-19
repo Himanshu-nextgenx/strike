@@ -1,0 +1,218 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-dark: var(--paper-dark);
+  --color-yellow: #ffe14d;
+  --color-purple: #c8a2f8;
+  --color-green: #6ee7a0;
+  --color-blue: #56b4ff;
+  --color-pink: #ff6fae;
+  --color-orange: #ff9f45;
+  --color-coupon-start: #22c55e;
+  --color-coupon-end: #15803d;
+
+  --font-heading: 'Anton', 'Archivo Black', sans-serif;
+  --font-handwriting: 'Caveat', 'Permanent Marker', cursive;
+  --font-mono: 'Space Mono', monospace;
+  --font-sans: 'Inter', sans-serif;
+}
+
+:root {
+  --ink: #0a0a0a;
+  --paper: #f4f1e8;
+  --paper-dark: #111111;
+  --border-color: #0a0a0a;
+  --shadow-color: #0a0a0a;
+  --grid-line-color: rgba(10, 10, 10, 0.08);
+  --card-bg: #ffffff;
+}
+
+.dark {
+  --ink: #f4f1e8;
+  --paper: #121214;
+  --paper-dark: #070708;
+  --border-color: #f4f1e8;
+  --shadow-color: #ffe14d; /* Glowing yellow brutalist shadow in dark mode */
+  --grid-line-color: rgba(255, 255, 255, 0.09);
+  --card-bg: #1c1c22;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Global Dark Mode Overrides for Cards & Containers */
+.dark .bg-white {
+  background-color: #1a1a20 !important;
+  color: #f4f1e8 !important;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-800,
+.dark .text-gray-600 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-900,
+.dark .text-ink {
+  color: #f4f1e8 !important;
+}
+
+.dark .bg-paper {
+  background-color: #121214 !important;
+}
+
+.dark .border-ink {
+  border-color: #f4f1e8 !important;
+}
+
+/* Subtle grid paper pattern */
+.bg-grid-paper {
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-grid-paper-dark {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Neo-Brutalist Hard Shadows & Borders */
+.border-ink {
+  border-color: var(--border-color);
+}
+
+.border-3 {
+  border-width: 3px;
+}
+
+.border-4 {
+  border-width: 4px;
+}
+
+.shadow-brutal-sm {
+  box-shadow: 3px 3px 0 var(--shadow-color);
+}
+
+.shadow-brutal {
+  box-shadow: 6px 6px 0 var(--shadow-color);
+}
+
+.shadow-brutal-lg {
+  box-shadow: 10px 10px 0 var(--shadow-color);
+}
+
+.shadow-brutal-white {
+  box-shadow: 6px 6px 0 #ffffff;
+}
+
+.shadow-brutal-yellow {
+  box-shadow: 6px 6px 0 #ffe14d;
+}
+
+/* Physical push effect on buttons & clickable cards */
+.btn-brutal {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+.btn-brutal:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0px 0px 0 var(--shadow-color) !important;
+}
+
+/* Marker Highlight Effect */
+.marker-highlight {
+  background-color: #ffe14d;
+  color: #0a0a0a !important;
+  transform: rotate(-1deg);
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.marker-highlight-pink {
+  background-color: #ff6fae;
+  color: #ffffff !important;
+  transform: rotate(1.5deg);
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+
+/* Text stroke helper for hero headline */
+.text-stroke-2 {
+  -webkit-text-stroke: 2px var(--border-color);
+}
+
+/* Tape decor on corners */
+.tape-piece {
+  position: absolute;
+  width: 50px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(10, 10, 10, 0.4);
+  backdrop-filter: blur(1px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.dark .tape-piece {
+  background-color: rgba(255, 225, 77, 0.35);
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+}
+
+/* Continuous Marquee Animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-handwriting {
+  font-family: var(--font-handwriting);
+}
+
+.font-mono-custom {
+  font-family: var(--font-mono);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink);
+  border-radius: 0px;
+}
